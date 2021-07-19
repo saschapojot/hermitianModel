@@ -257,9 +257,23 @@ def meanX(psiQ):
     :return: mean position at time q
     '''
     xOut=0
-    #norm2=0
+    norm2=0
     for j in range(0,len(psiQ)):
         xOut+=j*np.abs(psiQ[j])**2
-        #norm2+=np.abs(psiQ[j])**2
-    return xOut
-    #/norm2
+        norm2+=np.abs(psiQ[j])**2
+    return xOut/norm2
+
+
+def normalize(psiQ):
+    '''
+
+    :param psiQ: wvfcnt at time step q
+    :return: normalized psiQ
+    '''
+
+    norm2=0
+    for j in range(0,len(psiQ)):
+        norm2+=np.abs(psiQ[j])**2
+    nm=np.sqrt(norm2)
+    psiQ/=nm
+    return psiQ
